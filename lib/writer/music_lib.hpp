@@ -15,10 +15,14 @@ struct Sound {
 extern std::array<double, 12> freq_dict;
 double frequency(const int& f);
 
-void init();
-void set_sound_type(int n);
+void init(int sound);
 
-int get_total_length();
+void set_sound_type(int n);
+void print_sound_type(int sound_type);
+
+int get_anchor_address();
+void set_anchor(int anchor);
+
 void append_from_anchor(int anchor, std::function<void()> f);
 
 extern Sound last_sound;

@@ -81,7 +81,7 @@ def set_sound_type(s):
 
 def set_anchor(stamp):
     global anchor_library
-    anchor_library.append([stamp, length(music)])
+    anchor_library.append([stamp, len(music)])
 
 def start_append_mode(anchor_stamp):
     global is_append_mode, pointer
@@ -102,7 +102,7 @@ def end_append_mode():
 # 実行
 from written_score import *
 
-play_music(sound, set_sound_type, start_append_mode, end_append_mode)
+play_music(sound, set_sound_type, set_anchor, start_append_mode, end_append_mode)
 
 print("end play sound")
 print(music.shape)

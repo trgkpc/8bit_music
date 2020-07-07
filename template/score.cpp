@@ -2,11 +2,12 @@
 
 int main()
 {
-    init();
+    init(2);
     // ここに譜面を書く
+    int head = -1;
 zensou:
     set_sound_type(1);
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 0; i++) {
         b(Rest, L8);
         b(SOuL, L8);
         b(SOuL, L8);
@@ -26,6 +27,7 @@ intro:
     b(RAu, L8);
     b(FAu, L8);
 
+    head = get_anchor_address();
     b(FAu, L8);
     b(SOu, L16);
     cut(SOu, L8_);
@@ -34,6 +36,13 @@ intro:
     b(SOu, L16);
     cut(SOu, L8_);
     b(FAu, L8);
+    append_from_anchor(head, []() {
+        print_sound_type(2);
+        for (int i = 0; i < 4; i++) {
+            b(SOuLL, L8);
+            b(REuL, L8);
+        }
+    });
 
     b(FAu, L8);
     b(SOu, L16);
