@@ -3,7 +3,7 @@
 score_direction_file="score.cpp"    # 譜面を書いたcppファイル
 score_file="written_score.py"       # 出力される譜面ファイル(ライブラリに依存)
 writer_file="a.out"                 # ${score_file}をコンパイルするときの実行ファイル名(変更可能)
-music_file="music.mp3"              # 出力する音声ファイル(変更可能)
+music_file="output.wav"              # 出力する音声ファイル(変更可能)
 lib_dir="../lib"                    # ライブラリのディレクトリ名
 
 echo "==== compile score ====="
