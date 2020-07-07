@@ -1,5 +1,12 @@
 #pragma once
 
+/***** sound-type *****/
+#define PULSE50 0
+#define PULSE25 1
+#define PULSE125 2
+#define TRIANGLE 3
+#define NOISE 4
+
 /***** sound *****/
 #define INIT -1
 #define Rest 0

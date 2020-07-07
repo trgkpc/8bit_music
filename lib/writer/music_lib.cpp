@@ -18,27 +18,48 @@ double frequency(const int& f)
     }
 }
 
-Sound last_sound{INIT, 0, false};
-int part_num = 0;
+Sound last_sound{INIT, 0, 1.0, false};
 int total_length = 0;
-
-void re_init()
-{
-    last_sound = Sound{INIT, 0, false};
-    part_num++;
-    total_length = 0;
-    std::cout << "    change_part( " << part_num << " )" << std::endl;
-}
 
 int get_total_length()
 {
+    std::cout << "    set_anchor( " << total_length << " )" << std::endl;
     return total_length;
 }
 
-void nextSound(const int& f, const int& l)
+int sound_type = 0;
+void set_sound_type(int n)
+{
+    std::cout << "    set_sound_type( " << n << " )" << std::endl;
+}
+
+void append_from_anchor(int anchor, std::function<void()> f)
+{
+    Sound memo = last_sound;
+    int pos_memo = total_length;
+    int sound_type_memo = sound_type;
+
+    last_sound = Sound{INIT, 0, false};
+    total_length = anchor;
+    std::cout << "    append_mode(" << anchor << ")" << std::endl;
+    f();
+    bu(FIN, 0);
+    std::cout << "    end_append_mode()" << std::endl;
+
+    if (total_length > pos_memo) {
+        std::cerr << "append mode over flow occured." << std::endl;
+    }
+
+    last_sound = memo;
+    total_length = pos_memo;
+    set_sound_type(sound_type_memo);
+}
+
+
+void nextSound(const int& f, const int& l, const double& volume)
 {
     if (last_sound.freq != INIT) {
-        std::cout << "    playsound( " << frequency(last_sound.freq) << " , " << last_sound.length << " , ";
+        std::cout << "    playsound( " << frequency(last_sound.freq) << " , " << last_sound.length << " , " << volume << " , ";
         if (last_sound.cut) {
             std::cout << "True";
         } else {
@@ -52,30 +73,30 @@ void nextSound(const int& f, const int& l)
     total_length += l;
 }
 
-void b(const int& f, const int& l)
+void b(const int& f, const int& l, const double& volume)
 {
     if (f == last_sound.freq) {
         last_sound.cut = true;
     }
-    nextSound(f, l);
+    nextSound(f, l, volume);
 }
 
-void bu(const int& f, const int& l)
+void bu(const int& f, const int& l, const double& volume)
 {
     if (f == last_sound.freq) {
         last_sound.length += l;
     } else {
-        nextSound(f, l);
+        nextSound(f, l, volume);
     }
 }
 
-void cut(const int& f, const int& l)
+void cut(const int& f, const int& l, const double& volume)
 {
     last_sound.cut = true;
-    nextSound(f, l);
+    nextSound(f, l, volume);
 }
 
 void fin()
 {
-    bu(FIN, 1);
+    bu(FIN, 0);
 }
