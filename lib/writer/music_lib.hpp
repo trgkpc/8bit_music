@@ -15,6 +15,7 @@ struct Sound {
 extern std::array<double, 12> freq_dict;
 double frequency(const int& f);
 
+void init();
 void set_sound_type(int n);
 
 int get_total_length();

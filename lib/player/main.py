@@ -4,6 +4,7 @@ from scipy.io import wavfile
 import sys
 
 # 設定
+sys.path.append(".")
 if len(sys.argv) < 2:
     print("No output file name.")
     exit()
@@ -41,16 +42,16 @@ sound_players = [
     triangle,
     triangle #TODO
     ]
-sound_kind = 0
+play_sound = sound_players[0]
 
 # 音楽生成
 music = np.array([])
-is_append_mode = 0
+is_append_mode = False
 anchor_library = []
 pointer = 0
 
 def cat(a,b):
-    return np.array([a.tolist(), b.tolist()])
+    return np.concatenate([a,b])
 
 def sound(freq, length, volume, cut):
     global music, pointer
@@ -75,14 +76,14 @@ def sound(freq, length, volume, cut):
 
 # 音楽生成に関わるcppコードからの指令
 def set_sound_type(s):
-    global sound_kind 
-    sound_kind = s
+    global play_sound
+    play_sound = sound_players[s]
 
 def set_anchor(stamp):
     global anchor_library
     anchor_library.append([stamp, length(music)])
 
-def append_mode(anchor_stamp):
+def start_append_mode(anchor_stamp):
     global is_append_mode, pointer
     is_append_mode = True
     pinter = -1
@@ -101,8 +102,10 @@ def end_append_mode():
 # 実行
 from written_score import *
 
-play_music(sound)
+play_music(sound, set_sound_type, start_append_mode, end_append_mode)
 
+print("end play sound")
+print(music.shape)
 music = (float(2**10 - 1) * music).astype(np.int16)
 wavfile.write(outputfile, rate, music)
 

@@ -6,13 +6,15 @@ writer_file="a.out"                 # ${score_file}をコンパイルすると�
 music_file="music.mp3"              # 出力する音声ファイル(変更可能)
 lib_dir="../lib"                    # ライブラリのディレクトリ名
 
+echo "==== compile score ====="
 source ${lib_dir}/writer/compile.sh ${lib_dir}/writer
 g++ -c -o S.o ${score_direction_file} -I ${lib_dir}/writer
 g++ -o ${writer_file}  S.o ${lib_dir}/writer/lib.o
 
+echo "==== generate score ====="
+source ${lib_dir}/writer/compile.sh ${lib_dir}/writer
 ./${writer_file} -o > ${score_file}
-echo "hoge"
-exit
 
+echo "==== playing music ====="
 python3 ${lib_dir}/player/main.py ${music_file}
 

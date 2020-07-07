@@ -1,4 +1,5 @@
-def play_music(playsound):
+def play_music(playsound, set_sound_type, start_append_mode, end_append_mode):
+    set_sound_type( 1 )
     playsound( 0 , 2 , 1 , False )
     playsound( 207.653 , 2 , 1 , True )
     playsound( 207.653 , 2 , 1 , False )
@@ -324,5 +325,5 @@ def play_music(playsound):
     playsound( 369.994 , 2 , 1 , True )
     playsound( 369.994 , 2 , 1 , False )
     playsound( 415.305 , 1 , 1 , True )
-    playsound( 415.305 , 13 , 1 , False )
+    playsound( 415.305 , 29 , 1 , False )
     playsound( 0 , 32 , 1 , False )

@@ -2,8 +2,10 @@
 
 int main()
 {
+    init();
     // ここに譜面を書く
 zensou:
+    set_sound_type(1);
     for (int i = 0; i < 4; i++) {
         b(Rest, L8);
         b(SOuL, L8);
@@ -356,8 +358,9 @@ sabi:
     cut(FAu, L8);
     b(SOu, L16);
     cut(SOu, (L16 + L2_));
+    bu(SOu, L1);
 
-    b(Rest, L1 * 2);
+    bu(Rest, L1 * 2);
 
     // 終わらせる関数を呼ぶ
     fin();

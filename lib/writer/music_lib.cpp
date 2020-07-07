@@ -21,6 +21,11 @@ double frequency(const int& f)
 Sound last_sound{INIT, 0, 1.0, false};
 int total_length = 0;
 
+void init()
+{
+    std::cout << "def play_music(playsound, set_sound_type, start_append_mode, end_append_mode):" << std::endl;
+}
+
 int get_total_length()
 {
     std::cout << "    set_anchor( " << total_length << " )" << std::endl;
@@ -41,7 +46,7 @@ void append_from_anchor(int anchor, std::function<void()> f)
 
     last_sound = Sound{INIT, 0, false};
     total_length = anchor;
-    std::cout << "    append_mode(" << anchor << ")" << std::endl;
+    std::cout << "    start_append_mode(" << anchor << ")" << std::endl;
     f();
     bu(FIN, 0);
     std::cout << "    end_append_mode()" << std::endl;
@@ -66,8 +71,6 @@ void nextSound(const int& f, const int& l, const double& volume)
             std::cout << "False";
         }
         std::cout << " )" << std::endl;
-    } else {
-        std::cout << "def play_music(playsound):" << std::endl;
     }
     last_sound = Sound{f, l, false};
     total_length += l;
