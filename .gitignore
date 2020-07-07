@@ -1,3 +1,5 @@
 *swp
 *.o
 a.out
+*.mp3
+__pycache__
