@@ -7,11 +7,12 @@ music_file="music.mp3"              # 出力する音声ファイル(変更可�
 lib_dir="../lib"                    # ライブラリのディレクトリ名
 
 source ${lib_dir}/writer/compile.sh ${lib_dir}/writer
-g++ -c -o s.o ${score_direction_file} -I ${lib_dir}/writer
-g++ -o ${writer_file}  s.o ${lib_dir}/writer/lib.o
+g++ -c -o S.o ${score_direction_file} -I ${lib_dir}/writer
+g++ -o ${writer_file}  S.o ${lib_dir}/writer/lib.o
+
+./${writer_file} -o > ${score_file}
 echo "hoge"
 exit
 
-./${writer_file} -o > ${score_file}
 python3 ${lib_dir}/player/main.py ${music_file}
 

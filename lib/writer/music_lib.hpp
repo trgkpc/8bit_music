@@ -10,9 +10,12 @@ struct Sound {
     bool cut;
 };
 
+void re_init();
+
 extern std::array<double, 12> freq_dict;
 
 double frequency(const int& f);
+int get_total_length();
 
 extern Sound last_sound;
 

@@ -19,6 +19,21 @@ double frequency(const int& f)
 }
 
 Sound last_sound{INIT, 0, false};
+int part_num = 0;
+int total_length = 0;
+
+void re_init()
+{
+    last_sound = Sound{INIT, 0, false};
+    part_num++;
+    total_length = 0;
+    std::cout << "    change_part( " << part_num << " )" << std::endl;
+}
+
+int get_total_length()
+{
+    return total_length;
+}
 
 void nextSound(const int& f, const int& l)
 {
@@ -34,6 +49,7 @@ void nextSound(const int& f, const int& l)
         std::cout << "def play_music(playsound):" << std::endl;
     }
     last_sound = Sound{f, l, false};
+    total_length += l;
 }
 
 void b(const int& f, const int& l)
