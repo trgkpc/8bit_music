@@ -1,4 +1,4 @@
-def play_music(playsound, set_sound_type, set_anchor, start_append_mode, end_append_mode):
+def play_music(playsound, set_sound_type, set_bpm, set_anchor, start_append_mode, end_append_mode):
     set_sound_type( 2 )
     set_sound_type( 1 )
     playsound( 0 , 8 , 1 , True )
