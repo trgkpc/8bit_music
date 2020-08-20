@@ -5,6 +5,7 @@ int main()
     init(2);
     // ここに譜面を書く
     int head = -1;
+    default_volume = 20;
 
     print_bpm(200);
 
