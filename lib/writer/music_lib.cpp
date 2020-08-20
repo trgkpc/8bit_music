@@ -20,11 +20,12 @@ double frequency(const int& f)
 }
 
 Sound last_sound{INIT, 0, 1.0, false};
+double default_volume = 1.0;
 int total_length = 0;
 
 void init(int sound)
 {
-    std::cout << "def play_music(playsound, set_sound_type, set_anchor, start_append_mode, end_append_mode):" << std::endl;
+    std::cout << "def play_music(playsound, set_sound_type, set_bpm, set_anchor, start_append_mode, end_append_mode):" << std::endl;
     print_sound_type(sound);
 }
 
@@ -53,6 +54,10 @@ void print_sound_type(int sound_type)
 {
     std::cout << "    set_sound_type( " << sound_type << " )" << std::endl;
 }
+void print_bpm(double bpm)
+{
+    std::cout << "    set_bpm( " << bpm << " )" << std::endl;
+}
 
 std::vector<std::pair<int, std::function<void()>>> appended_musics;
 void append_from_anchor(int anchor, std::function<void()> f)
@@ -62,7 +67,7 @@ void append_from_anchor(int anchor, std::function<void()> f)
 }
 
 
-void nextSound(const int& f, const int& l, const double& volume)
+void nextSound(const int& f, const int& l, double volume)
 {
     if (last_sound.freq != INIT) {
         std::cout << "    playsound( " << frequency(last_sound.freq) << " , " << last_sound.length << " , " << volume << " , ";
@@ -86,7 +91,7 @@ void nextSound(const int& f, const int& l, const double& volume)
     total_length += l;
 }
 
-void b(const int& f, const int& l, const double& volume)
+void b(const int& f, const int& l, double volume)
 {
     if (f == last_sound.freq) {
         last_sound.cut = true;
@@ -94,7 +99,7 @@ void b(const int& f, const int& l, const double& volume)
     nextSound(f, l, volume);
 }
 
-void bu(const int& f, const int& l, const double& volume)
+void bu(const int& f, const int& l, double volume)
 {
     if (f == last_sound.freq) {
         last_sound.length += l;
@@ -103,7 +108,7 @@ void bu(const int& f, const int& l, const double& volume)
     }
 }
 
-void cut(const int& f, const int& l, const double& volume)
+void cut(const int& f, const int& l, double volume)
 {
     last_sound.cut = true;
     nextSound(f, l, volume);

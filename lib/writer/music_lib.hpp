@@ -19,6 +19,7 @@ void init(int sound);
 
 void set_sound_type(int n);
 void print_sound_type(int sound_type);
+void print_bpm(double bpm);
 
 int get_anchor_address();
 void set_anchor(int anchor);
@@ -26,9 +27,10 @@ void set_anchor(int anchor);
 void append_from_anchor(int anchor, std::function<void()> f);
 
 extern Sound last_sound;
+extern double default_volume;
 
-void b(const int& f, const int& l, const double& volume = 1.0);
-void bu(const int& f, const int& l, const double& volume = 1.0);
-void cut(const int& f, const int& l, const double& volume = 1.0);
+void b(const int& f, const int& l, double volume = default_volume);
+void bu(const int& f, const int& l, double volume = default_volume);
+void cut(const int& f, const int& l, double volume = default_volume);
 
 void fin();
