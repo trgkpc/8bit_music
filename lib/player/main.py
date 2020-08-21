@@ -83,6 +83,10 @@ def set_bpm(new_bpm):
     global bpm
     bpm = new_bpm
 
+def set_rate(r):
+    global rate
+    rate = r
+
 def set_anchor(stamp):
     global anchor_library
     anchor_library.append([stamp, len(music)])
@@ -106,7 +110,7 @@ def end_append_mode():
 # 実行
 from written_score import *
 
-play_music(sound, set_sound_type, set_bpm, set_anchor, start_append_mode, end_append_mode)
+play_music(sound, set_sound_type, set_bpm, set_rate, set_anchor, start_append_mode, end_append_mode)
 
 print("end play sound")
 print(music.shape)

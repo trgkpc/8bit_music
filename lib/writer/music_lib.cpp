@@ -25,7 +25,7 @@ int total_length = 0;
 
 void init(int sound)
 {
-    std::cout << "def play_music(playsound, set_sound_type, set_bpm, set_anchor, start_append_mode, end_append_mode):" << std::endl;
+    std::cout << "def play_music(playsound, set_sound_type, set_bpm, set_rate, set_anchor, start_append_mode, end_append_mode):" << std::endl;
     print_sound_type(sound);
 }
 
@@ -57,6 +57,10 @@ void print_sound_type(int sound_type)
 void print_bpm(double bpm)
 {
     std::cout << "    set_bpm( " << bpm << " )" << std::endl;
+}
+void set_rate(double r)
+{
+    std::cout << "    set_rate( " << r << " )" << std::endl;
 }
 
 std::vector<std::pair<int, std::function<void()>>> appended_musics;

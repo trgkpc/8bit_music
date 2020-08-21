@@ -20,6 +20,7 @@ void init(int sound);
 void set_sound_type(int n);
 void print_sound_type(int sound_type);
 void print_bpm(double bpm);
+void set_rate(double r);
 
 int get_anchor_address();
 void set_anchor(int anchor);
